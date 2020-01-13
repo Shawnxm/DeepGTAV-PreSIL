@@ -1,7 +1,7 @@
 //DATASET
 #define _RATE_ 10
-#define _WIDTH_ 1920
-#define _HEIGHT_ 1080
+#define _WIDTH_ 1280  // xumiao, 1920
+#define _HEIGHT_ 720  // xumiao, 1080
 #define _VEHICLES_ true
 #define _PEDS_ true
 #define _TRAFFIC_SIGNS_ false

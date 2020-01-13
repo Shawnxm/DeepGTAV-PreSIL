@@ -141,7 +141,9 @@ void Server::checkSendMessage() {
 
 	if (sendOutputs && (((float)(std::clock() - lastSentMessage) / CLOCKS_PER_SEC) > (1.0 / scenario.rate))) {
 		if (messageSize == 0) {
+			// log("[xumiao, server] before generateMessage\n", true);
 			message = scenario.generateMessage();
+			// log("[xumiao, server] after generateMessage\n", true);
 			chmessage = message.GetString();
 			messageSize = message.GetSize();
 		}		

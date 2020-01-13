@@ -16,8 +16,11 @@ void ScriptMain()
 			scriptWait(0);
 		}
 		while (server.clientConnected) {
+			std::ostringstream oss;
 			server.checkRecvMessage();
+			// log("[xumiao, script] checkRecv\n", true);
 			server.checkSendMessage();
+			// log("[xumiao, script] checkSend\n", true);
 			server.scenario.run();
             scriptWait(0);
 		}

@@ -21,8 +21,8 @@ def ensureDirExists(filename):
             if exc.errno != errno.EEXIST:
                 raise
 
-width = 1920
-height = 1080
+width = 800 #1920
+height = 600 #1080
 index = 0 #Use startIndex to change index to start on
 startIndex = 0
 

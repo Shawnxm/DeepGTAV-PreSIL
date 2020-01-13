@@ -36,6 +36,6 @@ ScreenCapturer::~ScreenCapturer(){
 }
 
 void ScreenCapturer::capture() {
-	StretchBlt(hCaptureDC, 0, 0, imageWidth, imageHeight, hWindowDC, 0, 0, windowWidth, windowHeight, SRCCOPY);
+	StretchBlt(hCaptureDC, 0, 0, imageWidth, imageHeight, hWindowDC, 320, 180, windowWidth, windowHeight, SRCCOPY);  // xumiao, 0, 0
 	GetDIBits(hCaptureDC, hCaptureBitmap, 0, imageHeight, pixels, (BITMAPINFO*)&info, DIB_RGB_COLORS);
 }

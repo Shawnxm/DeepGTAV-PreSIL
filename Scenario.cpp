@@ -534,12 +534,12 @@ StringBuffer Scenario::generateMessage() {
     //std::string str1 = oss1.str();
     //log(str1);
 
-    log("Script cams rendered");
+	log("Script cams rendered");
     capture();
     log("Screen captured");
 
     //TODO pass this through
-    bool depthMap = true;
+	bool depthMap = true;  // xumiao, true
 
     setCamParams();
     //setColorBuffer();
@@ -552,20 +552,33 @@ StringBuffer Scenario::generateMessage() {
 	if (brake) setBrake();
 	if (steering) setSteering();
 	if (drivingMode); //TODO
+	// log("[xumiao, scenario] all set\n", true);
 
     if (!m_pObjDet) {
         m_pObjDet.reset(new ObjectDetection());
-        m_pObjDet->initCollection(s_camParams.width, s_camParams.height, false, instance_index);
+		std::ostringstream oss;
+		oss << s_camParams.width << s_camParams.height;
+		// log("[xumiao, scenario]" +oss.str()+"\n", true);
+		m_pObjDet->initCollection(s_camParams.width, s_camParams.height, false, instance_index);
         m_startIndex = instance_index;
     }
     if (depthSize != -1) {
-        FrameObjectInfo fObjInfo = m_pObjDet->generateMessage(depth_map, m_stencilBuffer);
-        m_pObjDet->exportDetections(fObjInfo);
-        m_pObjDet->exportImage(screenCapturer->pixels);
-        d["index"] = fObjInfo.instanceIdx;
+		// std::ostringstream oss;
+		// oss << depth_map;
+		// log("[xumiao, scenario] 1 "+ oss.str() +"\n", true);
+		FrameObjectInfo fObjInfo = m_pObjDet->generateMessage(depth_map, m_stencilBuffer);
+		// log("[xumiao, scenario] 2\n", true);
+		m_pObjDet->exportDetections(fObjInfo);
+		// log("[xumiao, scenario] 3\n", true);
+		m_pObjDet->exportImage(screenCapturer->pixels);
+		// log("[xumiao, scenario] 4\n", true);
+		d["index"] = fObjInfo.instanceIdx;
+		// log("[xumiao, scenario] 5\n", true);
 
         //Create vehicles if it is a stationary scenario
         createVehicles();
+
+		// log("[xumiao, scenario] createVehicles\n", true);
 
         if (GENERATE_SECONDARY_PERSPECTIVES) {
             generateSecondaryPerspectives();

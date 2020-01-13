@@ -26,7 +26,7 @@ if __name__ == '__main__':
     
     # We set the scenario to be in manual driving, and everything else random (time, weather and location). 
     # See deepgtav/messages.py to see what options are supported
-    scenario = Scenario(drivingMode=-1) #manual driving
+    scenario = Scenario(drivingMode=-1) #manual driving, for autonomous driving with a speed of 20 mph: drivingMode=[786603,20.0]
     
     # Send the Start request to DeepGTAV. Dataset is set as default, we only receive frames at 10Hz (320, 160)
     client.sendMessage(Start(scenario=scenario))
