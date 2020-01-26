@@ -12,6 +12,7 @@
 #include <Eigen/Core>
 #include <sstream>
 #include "lodepng.h"
+#include <iomanip>
 
 ObjectDetection::ObjectDetection()
 {
