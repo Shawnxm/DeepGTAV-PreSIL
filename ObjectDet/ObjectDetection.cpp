@@ -244,7 +244,10 @@ FrameObjectInfo ObjectDetection::generateMessage(float* pDepth, uint8_t* pStenci
 	GetSystemTime(&st);
 	FILE* f = fopen(m_timestampsFile.c_str(), "a");
 	std::ostringstream oss_time;
-	oss_time << st.wYear << "-" << st.wMonth << "-" << st.wDay << " " << st.wHour << ":" << st.wMinute << ":" << st.wSecond << "." << st.wMilliseconds;
+	oss_time << std::setw(7) << std::setfill('0') << entityID << " " 
+            << st.wYear << "-" << st.wMonth << "-" << st.wDay << " " 
+            << std::setw(2) << st.wHour << ":" << st.wMinute << ":" 
+            << std::setw(2) << st.wSecond << "." << st.wMilliseconds;
 	std::string str = oss_time.str();
 	fprintf(f, str.c_str());
 	fprintf(f, "\n");
